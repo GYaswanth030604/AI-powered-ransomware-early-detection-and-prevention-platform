@@ -338,11 +338,12 @@ def start_services():
 
 #  MAIN 
 if __name__ == "__main__":
-    print("=" * 60)
-    print("🛡️  RANSOMWARE DETECTION SYSTEM")
-    print("🌐  Web Dashboard URLs:")
-    print("👉  http://127.0.0.1:5000")
-    print("👉  http://localhost:5000")
-    print("=" * 60)
+    print("-" * 60)
+    print("RANSOMWARE DETECTION SYSTEM")
+    print("Web Dashboard Starting...")
+    print("-" * 60)
+
     start_services()
-    socketio.run(app, host="0.0.0.0", port=5000, debug=False)
+
+    port = int(os.environ.get("PORT", 10000))
+    socketio.run(app, host="0.0.0.0", port=port, debug=False)
