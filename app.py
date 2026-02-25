@@ -337,14 +337,17 @@ def start_services():
 
 
 #  MAIN 
-if __name__ == "__main__":
-    print("-" * 60)
-    print("RANSOMWARE DETECTION SYSTEM")
-    print("Web Dashboard Starting...")
-    print("-" * 60)
+import os
 
-    start_services()
+if __name__ == "__main__":
+
+    running_on_render = os.environ.get("RENDER") == "true"
+
+    if not running_on_render:
+        print("Running locally → Starting full system")
+        start_services()
+    else:
+        print("Running on Render → Dashboard mode only")
 
     port = int(os.environ.get("PORT", 10000))
     socketio.run(app, host="0.0.0.0", port=port, allow_unsafe_werkzeug=True)
-
